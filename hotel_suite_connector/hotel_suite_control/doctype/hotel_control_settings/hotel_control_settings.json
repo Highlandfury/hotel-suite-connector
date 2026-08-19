@@ -24,7 +24,19 @@
   "kamra_scheduler_guard_active",
   "kamra_scheduler_original_stopped",
   "kamra_scheduler_job",
-  "night_audit_guard_last_synced_on"
+  "night_audit_guard_last_synced_on",
+  "night_audit_orchestrator_section",
+  "enable_controlled_night_audit_scheduler",
+  "require_separate_night_audit_approver",
+  "night_audit_orchestrator_column_break",
+  "night_audit_preflight_time",
+  "night_audit_execution_time",
+  "night_audit_orchestrator_status_section",
+  "night_audit_orchestrator_version",
+  "connector_scheduler_job",
+  "night_audit_orchestrator_status_column_break",
+  "connector_scheduler_last_synced_on",
+  "connector_scheduler_last_tick"
  ],
  "fields": [
   {
@@ -147,6 +159,77 @@
    "fieldname": "night_audit_guard_last_synced_on",
    "fieldtype": "Datetime",
    "label": "Guard Last Synchronized On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "night_audit_orchestrator_section",
+   "fieldtype": "Section Break",
+   "label": "Controlled Night Audit Orchestrator"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.enable_control_module==1",
+   "description": "Runs read-only controlled preparation only. v0.5.0 cannot execute Kamra night audit.",
+   "fieldname": "enable_controlled_night_audit_scheduler",
+   "fieldtype": "Check",
+   "label": "Enable Controlled Scheduler"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.enable_control_module==1",
+   "fieldname": "require_separate_night_audit_approver",
+   "fieldtype": "Check",
+   "label": "Require Separate Approver"
+  },
+  {
+   "fieldname": "night_audit_orchestrator_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "02:45:00",
+   "fieldname": "night_audit_preflight_time",
+   "fieldtype": "Time",
+   "label": "Scheduled Preflight Time"
+  },
+  {
+   "default": "03:00:00",
+   "description": "Reserved for a later controlled-execution release; v0.5.0 does not execute.",
+   "fieldname": "night_audit_execution_time",
+   "fieldtype": "Time",
+   "label": "Planned Execution Time"
+  },
+  {
+   "fieldname": "night_audit_orchestrator_status_section",
+   "fieldtype": "Section Break",
+   "label": "Orchestrator Status"
+  },
+  {
+   "default": "0.5.0",
+   "fieldname": "night_audit_orchestrator_version",
+   "fieldtype": "Data",
+   "label": "Orchestrator Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "connector_scheduler_job",
+   "fieldtype": "Data",
+   "label": "Connector Scheduler Job",
+   "read_only": 1
+  },
+  {
+   "fieldname": "night_audit_orchestrator_status_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "connector_scheduler_last_synced_on",
+   "fieldtype": "Datetime",
+   "label": "Scheduler Last Synchronized On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "connector_scheduler_last_tick",
+   "fieldtype": "Datetime",
+   "label": "Scheduler Last Active Tick",
    "read_only": 1
   }
  ],

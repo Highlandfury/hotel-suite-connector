@@ -20,12 +20,14 @@ def after_install():
 	ensure_roles()
 	ensure_default_checklist_templates()
 	sync_night_audit_scheduler_guard()
+	sync_night_audit_orchestrator()
 
 
 def after_migrate():
 	ensure_roles()
 	ensure_default_checklist_templates()
 	sync_night_audit_scheduler_guard()
+	sync_night_audit_orchestrator()
 
 
 def ensure_roles():
@@ -130,3 +132,9 @@ def sync_night_audit_scheduler_guard():
 	from hotel_suite_connector.night_audit.scheduler_guard import sync_scheduler_guard
 
 	sync_scheduler_guard()
+
+def sync_night_audit_orchestrator():
+	"""Backfill safe defaults and discover the connector scheduler job."""
+	from hotel_suite_connector.night_audit.scheduler import sync_orchestrator_scheduler
+
+	sync_orchestrator_scheduler()

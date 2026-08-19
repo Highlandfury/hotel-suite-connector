@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import json
@@ -8,10 +7,11 @@ from frappe import _
 from frappe.utils import getdate, now_datetime, today
 
 from hotel_suite_connector.night_audit.engine import run_read_only_preflight
+from hotel_suite_connector.night_audit.orchestrator import prepare_night_audit_internal
 from hotel_suite_connector.night_audit.scheduler_guard import get_effective_mode, guard_status
 
 
-GUARD_VERSION = "0.4.1"
+GUARD_VERSION = "0.5.0"
 ALLOWED_ROLES = {
 	"Front Desk",
 	"Finance",
@@ -28,13 +28,23 @@ def _require_run_role():
 		frappe.throw(_("You do not have permission to request night audit."), frappe.PermissionError)
 
 
-def _record_event(property_name, business_date, mode, decision, message, control=None, result=None):
+def _record_event(
+	property_name,
+	business_date,
+	mode,
+	decision,
+	message,
+	control=None,
+	batch=None,
+	result=None,
+):
 	doc = frappe.new_doc("Hotel Night Audit Guard Event")
 	doc.property = property_name
 	doc.business_date = business_date
 	doc.mode = mode
 	doc.decision = decision
 	doc.control = control
+	doc.batch = batch
 	doc.requested_by = frappe.session.user
 	doc.requested_on = now_datetime()
 	doc.guard_version = GUARD_VERSION
@@ -55,23 +65,36 @@ def run_night_audit(property: str, business_date: str | None = None):
 	mode = get_effective_mode()
 
 	if mode == "Enforced":
-		preflight = run_read_only_preflight(property, business_date)
+		prepared = prepare_night_audit_internal(
+			property,
+			business_date,
+			trigger="API Guard",
+			requested_by=frappe.session.user,
+		)
 		message = (
-			"Night audit was blocked by Hotel Suite Control. Controlled execution "
-			"is not enabled until cashier close, approvals, backup evidence and ERP reconciliation are implemented."
+			"Night audit was blocked by Hotel Suite Control. Orchestrator v0.5.0 prepared evidence "
+			"but cannot execute until cashier close, approvals, backup evidence and ERP reconciliation are implemented."
 		)
 		event = _record_event(
-			property, business_date, mode, "Blocked", message,
-			control=preflight.get("control"), result=preflight,
+			property,
+			business_date,
+			mode,
+			"Blocked",
+			message,
+			control=prepared.get("preflight_control"),
+			batch=prepared.get("batch"),
+			result=prepared,
 		)
 		return {
 			"blocked": True,
 			"success": False,
 			"mode": mode,
 			"message": message,
-			"control": preflight.get("control"),
-			"preflight_status": preflight.get("status"),
-			"hard_blockers": preflight.get("hard_blockers"),
+			"batch": prepared.get("batch"),
+			"control": prepared.get("preflight_control"),
+			"orchestration_status": prepared.get("status"),
+			"hard_blockers": prepared.get("hard_blockers"),
+			"missing_gate_count": prepared.get("missing_gate_count"),
 			"guard_event": event,
 		}
 
@@ -89,8 +112,13 @@ def run_night_audit(property: str, business_date: str | None = None):
 		else "Hotel Suite Control is Off; Kamra night audit was allowed unchanged."
 	)
 	_record_event(
-		property, business_date, mode, decision, message,
-		control=(preflight or {}).get("control"), result=result,
+		property,
+		business_date,
+		mode,
+		decision,
+		message,
+		control=(preflight or {}).get("control"),
+		result=result,
 	)
 	return result
 

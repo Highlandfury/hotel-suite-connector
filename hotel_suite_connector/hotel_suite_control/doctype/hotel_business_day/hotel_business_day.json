@@ -1,0 +1,192 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:property",
+ "creation": "2026-08-19 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "identity_section",
+  "property",
+  "business_date",
+  "column_break_1",
+  "status",
+  "orchestrator_version",
+  "batch_section",
+  "active_batch",
+  "last_completed_batch",
+  "previous_business_date",
+  "next_business_date",
+  "opened_section",
+  "opened_by",
+  "opened_on",
+  "column_break_2",
+  "last_transition_on",
+  "operation_token",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Controlled Business Day"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Property",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "business_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Business Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nPreflight Running\nBlocked\nReady for Approval\nApproved\nExecuting\nCompleted\nFailed\nRecovery Required",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "orchestrator_version",
+   "fieldtype": "Data",
+   "label": "Orchestrator Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "batch_section",
+   "fieldtype": "Section Break",
+   "label": "Night Audit Batch"
+  },
+  {
+   "fieldname": "active_batch",
+   "fieldtype": "Link",
+   "label": "Active Batch",
+   "options": "Hotel Night Audit Batch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_completed_batch",
+   "fieldtype": "Link",
+   "label": "Last Completed Batch",
+   "options": "Hotel Night Audit Batch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "previous_business_date",
+   "fieldtype": "Date",
+   "label": "Previous Business Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "next_business_date",
+   "fieldtype": "Date",
+   "label": "Next Business Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "opened_section",
+   "fieldtype": "Section Break",
+   "label": "Control Metadata"
+  },
+  {
+   "fieldname": "opened_by",
+   "fieldtype": "Link",
+   "label": "Opened By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "opened_on",
+   "fieldtype": "Datetime",
+   "label": "Opened On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_transition_on",
+   "fieldtype": "Datetime",
+   "label": "Last Transition On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "operation_token",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Operation Token",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Control Notes",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-19 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Hotel Suite Control",
+ "name": "Hotel Business Day",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel General Manager"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Auditor"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Night Auditor"
+  }
+ ],
+ "search_fields": "property,business_date,status,active_batch",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "property",
+ "track_changes": 1
+}

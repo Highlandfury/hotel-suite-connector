@@ -1,0 +1,346 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "HNAB-.YYYY.-.#####",
+ "creation": "2026-08-19 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "identity_section",
+  "property",
+  "business_date",
+  "business_day",
+  "column_break_1",
+  "status",
+  "stage",
+  "trigger",
+  "idempotency_key",
+  "request_section",
+  "requested_by",
+  "requested_on",
+  "attempt_count",
+  "column_break_2",
+  "last_attempt_by",
+  "last_attempt_on",
+  "last_transition_on",
+  "preflight_section",
+  "preflight_control",
+  "preflight_status",
+  "hard_blockers",
+  "column_break_3",
+  "missing_gate_count",
+  "last_preflight_on",
+  "orchestrator_version",
+  "approval_section",
+  "approved_by",
+  "approved_on",
+  "approval_comment",
+  "execution_section",
+  "execution_started_on",
+  "execution_completed_on",
+  "executed_by",
+  "kamra_audit",
+  "result_section",
+  "next_action",
+  "result_json",
+  "error_summary",
+  "error_trace"
+ ],
+ "fields": [
+  {
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Controlled Night Audit Batch"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Property",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Business Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_day",
+   "fieldtype": "Link",
+   "label": "Business Day",
+   "options": "Hotel Business Day",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nPreflight Running\nBlocked\nReady for Approval\nApproved\nQueued\nExecuting\nCompleted\nFailed\nRecovery Required\nCancelled",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "stage",
+   "fieldtype": "Data",
+   "label": "Current Stage",
+   "read_only": 1
+  },
+  {
+   "default": "Manual",
+   "fieldname": "trigger",
+   "fieldtype": "Select",
+   "label": "Trigger",
+   "options": "Manual\nAPI Guard\nScheduler\nRecovery",
+   "read_only": 1
+  },
+  {
+   "fieldname": "idempotency_key",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Idempotency Key",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "request_section",
+   "fieldtype": "Section Break",
+   "label": "Request and Attempts"
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Link",
+   "label": "Requested By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "requested_on",
+   "fieldtype": "Datetime",
+   "label": "Requested On",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "attempt_count",
+   "fieldtype": "Int",
+   "label": "Preflight Attempts",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_attempt_by",
+   "fieldtype": "Link",
+   "label": "Last Attempt By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_attempt_on",
+   "fieldtype": "Datetime",
+   "label": "Last Attempt On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_transition_on",
+   "fieldtype": "Datetime",
+   "label": "Last Transition On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "preflight_section",
+   "fieldtype": "Section Break",
+   "label": "Evidence-backed Preflight"
+  },
+  {
+   "fieldname": "preflight_control",
+   "fieldtype": "Link",
+   "label": "Preflight Control",
+   "options": "Hotel Night Audit Control",
+   "read_only": 1
+  },
+  {
+   "fieldname": "preflight_status",
+   "fieldtype": "Data",
+   "label": "Preflight Status",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "hard_blockers",
+   "fieldtype": "Int",
+   "label": "Hard Blockers",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "missing_gate_count",
+   "fieldtype": "Int",
+   "label": "Missing or Error Gates",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_preflight_on",
+   "fieldtype": "Datetime",
+   "label": "Last Preflight On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "orchestrator_version",
+   "fieldtype": "Data",
+   "label": "Orchestrator Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_section",
+   "fieldtype": "Section Break",
+   "label": "Independent Approval"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_on",
+   "fieldtype": "Datetime",
+   "label": "Approved On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_comment",
+   "fieldtype": "Small Text",
+   "label": "Approval Comment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "execution_section",
+   "fieldtype": "Section Break",
+   "label": "Controlled Execution (Disabled in v0.5.0)"
+  },
+  {
+   "fieldname": "execution_started_on",
+   "fieldtype": "Datetime",
+   "label": "Execution Started On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "execution_completed_on",
+   "fieldtype": "Datetime",
+   "label": "Execution Completed On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "executed_by",
+   "fieldtype": "Link",
+   "label": "Executed By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "kamra_audit",
+   "fieldtype": "Link",
+   "label": "Kamra Night Audit Run",
+   "options": "Night Audit Run",
+   "read_only": 1
+  },
+  {
+   "fieldname": "result_section",
+   "fieldtype": "Section Break",
+   "label": "Result and Recovery"
+  },
+  {
+   "fieldname": "next_action",
+   "fieldtype": "Small Text",
+   "label": "Required Next Action",
+   "read_only": 1
+  },
+  {
+   "fieldname": "result_json",
+   "fieldtype": "Code",
+   "label": "Result JSON",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_summary",
+   "fieldtype": "Small Text",
+   "label": "Error Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_trace",
+   "fieldtype": "Long Text",
+   "label": "Error Trace",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-19 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Hotel Suite Control",
+ "name": "Hotel Night Audit Batch",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel General Manager"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Auditor"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Night Auditor"
+  }
+ ],
+ "search_fields": "property,business_date,status,preflight_control,requested_by,approved_by",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "property",
+ "track_changes": 1
+}

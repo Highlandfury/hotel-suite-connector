@@ -116,3 +116,20 @@ Desk or public API and must be governed by the production recovery runbook.
 - Keeps both the master control and effective guard mode fail-safe during
   upgrades; no scheduler is stopped merely by installing the hotfix.
 - Records guard events with guard version 0.4.1.
+
+## Controlled night audit orchestrator (v0.5.0)
+
+- Adds one controlled Hotel Business Day record per property.
+- Adds an idempotent Hotel Night Audit Batch for each property/business date.
+- Records every state change in an immutable SHA-256 hash-chained event ledger.
+- Uses database advisory locks to prevent concurrent preparation for the same
+  property and business date.
+- Registers a connector-owned five-minute scheduler tick that remains inert
+  until both the control-module and controlled-scheduler switches are enabled.
+- Supports explicit business-day initialization, manual/scheduled preflight
+  preparation, independent approval scaffolding, and event-chain verification.
+- Integrates enforced API requests with the orchestration batch while remaining
+  fail-closed: v0.5.0 never calls Kamra's mutating night-audit function.
+
+Controlled execution, cashier close, backup evidence, approval reconciliation,
+ERP posting and business-date rollover remain disabled until later releases.

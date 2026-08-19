@@ -1,0 +1,207 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "HNASE-.YYYY.-.#####",
+ "creation": "2026-08-19 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "identity_section",
+  "batch",
+  "property",
+  "business_date",
+  "sequence",
+  "column_break_1",
+  "event_type",
+  "from_status",
+  "to_status",
+  "actor",
+  "occurred_on",
+  "trigger",
+  "control",
+  "evidence_section",
+  "message",
+  "details_json",
+  "hash_section",
+  "previous_hash",
+  "event_hash"
+ ],
+ "fields": [
+  {
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Immutable State Event"
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Batch",
+   "options": "Hotel Night Audit Batch",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Property",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_date",
+   "fieldtype": "Date",
+   "label": "Business Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "sequence",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Sequence",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "event_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Event Type",
+   "options": "Created\nPreflight Started\nBlocked\nReady\nApproved\nQueued\nExecution Started\nExecution Blocked\nCompleted\nFailed\nRecovery Required\nCancelled",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "from_status",
+   "fieldtype": "Data",
+   "label": "From Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_status",
+   "fieldtype": "Data",
+   "label": "To Status",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "actor",
+   "fieldtype": "Link",
+   "label": "Actor",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "occurred_on",
+   "fieldtype": "Datetime",
+   "label": "Occurred On",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "trigger",
+   "fieldtype": "Select",
+   "label": "Trigger",
+   "options": "Manual\nAPI Guard\nScheduler\nRecovery",
+   "read_only": 1
+  },
+  {
+   "fieldname": "control",
+   "fieldtype": "Link",
+   "label": "Preflight Control",
+   "options": "Hotel Night Audit Control",
+   "read_only": 1
+  },
+  {
+   "fieldname": "evidence_section",
+   "fieldtype": "Section Break",
+   "label": "Event Evidence"
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Small Text",
+   "label": "Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "details_json",
+   "fieldtype": "Code",
+   "label": "Details JSON",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hash_section",
+   "fieldtype": "Section Break",
+   "label": "Tamper-evident Chain"
+  },
+  {
+   "fieldname": "previous_hash",
+   "fieldtype": "Data",
+   "label": "Previous Event Hash",
+   "read_only": 1
+  },
+  {
+   "fieldname": "event_hash",
+   "fieldtype": "Data",
+   "label": "Event Hash",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-19 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Hotel Suite Control",
+ "name": "Hotel Night Audit State Event",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel General Manager"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Auditor"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Night Auditor"
+  }
+ ],
+ "search_fields": "batch,property,business_date,event_type,actor,event_hash",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "batch",
+ "track_changes": 1
+}

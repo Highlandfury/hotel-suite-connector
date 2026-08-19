@@ -264,3 +264,14 @@ after_migrate = "hotel_suite_connector.install.after_migrate"
 override_whitelisted_methods = {
 	"kamra.api.run_night_audit": "hotel_suite_connector.night_audit.guard.run_night_audit",
 }
+
+# Controlled night-audit scheduler
+# --------------------------------
+
+scheduler_events = {
+	"cron": {
+		"*/5 * * * *": [
+			"hotel_suite_connector.night_audit.scheduler.tick",
+		],
+	},
+}

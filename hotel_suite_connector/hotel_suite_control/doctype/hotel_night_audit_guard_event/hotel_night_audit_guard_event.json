@@ -13,6 +13,7 @@
   "column_break_1",
   "decision",
   "control",
+  "batch",
   "guard_version",
   "requested_by",
   "requested_on",
@@ -69,6 +70,13 @@
    "fieldtype": "Link",
    "label": "Preflight Control",
    "options": "Hotel Night Audit Control",
+   "read_only": 1
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "label": "Orchestration Batch",
+   "options": "Hotel Night Audit Batch",
    "read_only": 1
   },
   {
@@ -151,7 +159,7 @@
    "role": "Hotel Night Auditor"
   }
  ],
- "search_fields": "property,business_date,mode,decision,control,requested_by",
+ "search_fields": "property,business_date,mode,decision,control,batch,requested_by",
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": [],
