@@ -1,0 +1,148 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-19 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "control_section",
+  "enable_control_module",
+  "enforce_cancellation_approval",
+  "enforce_stock_approval",
+  "defaults_section",
+  "default_company",
+  "property_name",
+  "column_break_1",
+  "currency",
+  "timezone",
+  "night_audit_section",
+  "earliest_night_audit_time",
+  "allowed_unreconciled_variance"
+ ],
+ "fields": [
+  {
+   "fieldname": "control_section",
+   "fieldtype": "Section Break",
+   "label": "Control Activation"
+  },
+  {
+   "default": "0",
+   "description": "Master switch. Keep disabled until workflows are tested.",
+   "fieldname": "enable_control_module",
+   "fieldtype": "Check",
+   "label": "Enable Control Module"
+  },
+  {
+   "default": "0",
+   "depends_on": "enable_control_module",
+   "fieldname": "enforce_cancellation_approval",
+   "fieldtype": "Check",
+   "label": "Enforce Cancellation Approval"
+  },
+  {
+   "default": "0",
+   "depends_on": "enable_control_module",
+   "fieldname": "enforce_stock_approval",
+   "fieldtype": "Check",
+   "label": "Enforce Stock Approval"
+  },
+  {
+   "fieldname": "defaults_section",
+   "fieldtype": "Section Break",
+   "label": "Defaults"
+  },
+  {
+   "fieldname": "default_company",
+   "fieldtype": "Link",
+   "label": "Default Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "property_name",
+   "fieldtype": "Data",
+   "label": "Default Hotel Property"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "NGN",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "default": "Africa/Lagos",
+   "fieldname": "timezone",
+   "fieldtype": "Data",
+   "label": "Timezone"
+  },
+  {
+   "fieldname": "night_audit_section",
+   "fieldtype": "Section Break",
+   "label": "Night Audit Defaults"
+  },
+  {
+   "default": "02:00:00",
+   "fieldname": "earliest_night_audit_time",
+   "fieldtype": "Time",
+   "label": "Earliest Night Audit Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "allowed_unreconciled_variance",
+   "fieldtype": "Currency",
+   "label": "Allowed Unreconciled Variance",
+   "non_negative": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-19 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Hotel Suite Control",
+ "name": "Hotel Control Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "email": 1,
+   "export": 1,
+   "if_owner": 0,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel General Manager",
+   "write": 1
+  },
+  {
+   "create": 0,
+   "email": 1,
+   "export": 1,
+   "if_owner": 0,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Auditor",
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "issingle": 1,
+ "track_changes": 1
+}

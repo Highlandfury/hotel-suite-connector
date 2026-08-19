@@ -38,3 +38,14 @@ This app can use GitHub Actions for CI. The following workflows are configured:
 ### License
 
 agpl-3.0
+
+## Audit foundation (v0.1.0)
+
+This release introduces:
+
+- Hotel control settings with enforcement disabled by default
+- Configurable approval policies and approval stages
+- Transaction cancellation request records
+- Hotel audit and operational control roles
+
+No ERPNext, HRMS, CRM, Payments or Kamra core files are modified.

@@ -85,14 +85,16 @@ app_license = "agpl-3.0"
 # Installation
 # ------------
 
-# before_install = "hotel_suite_connector.install.before_install"
-# after_install = "hotel_suite_connector.install.after_install"
+before_install = "hotel_suite_connector.install.before_install"
+after_install = "hotel_suite_connector.install.after_install"
 
 # Uninstallation
 # ------------
 
 # before_uninstall = "hotel_suite_connector.uninstall.before_uninstall"
 # after_uninstall = "hotel_suite_connector.uninstall.after_uninstall"
+
+after_migrate = "hotel_suite_connector.install.after_migrate"
 
 # Integration Setup
 # ------------------
