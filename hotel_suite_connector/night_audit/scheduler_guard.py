@@ -43,6 +43,12 @@ def sync_scheduler_guard() -> dict:
 	if not frappe.db.exists("DocType", "Hotel Control Settings"):
 		return {"mode": "Off", "job_found": False, "guard_active": False}
 	settings = frappe.get_single("Hotel Control Settings")
+	selected_mode = settings.get("night_audit_mode")
+	if selected_mode not in VALID_MODES:
+		# Frappe does not backfill defaults into an existing Single record when
+		# a field is added. Persist the safest mode during install/migrate sync.
+		_set_single("night_audit_mode", "Off")
+		settings.night_audit_mode = "Off"
 	mode = get_effective_mode(settings)
 	job = get_scheduler_job()
 	active = cint(settings.get("kamra_scheduler_guard_active"))

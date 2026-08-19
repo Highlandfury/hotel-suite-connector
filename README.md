@@ -108,3 +108,11 @@ means essential evidence is still manual or outside the v0.3 scope.
 Privileged administrators can still call Kamra's Python function directly from
 the server for disaster recovery. That path is intentionally not exposed in the
 Desk or public API and must be governed by the production recovery runbook.
+
+## Night audit guard migration hotfix (v0.4.1)
+
+- Persists `Off` when an existing Hotel Control Settings Single record has a
+  null or invalid night-audit mode after schema migration.
+- Keeps both the master control and effective guard mode fail-safe during
+  upgrades; no scheduler is stopped merely by installing the hotfix.
+- Records guard events with guard version 0.4.1.

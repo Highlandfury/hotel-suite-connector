@@ -11,7 +11,7 @@ from hotel_suite_connector.night_audit.engine import run_read_only_preflight
 from hotel_suite_connector.night_audit.scheduler_guard import get_effective_mode, guard_status
 
 
-GUARD_VERSION = "0.4.0"
+GUARD_VERSION = "0.4.1"
 ALLOWED_ROLES = {
 	"Front Desk",
 	"Finance",
