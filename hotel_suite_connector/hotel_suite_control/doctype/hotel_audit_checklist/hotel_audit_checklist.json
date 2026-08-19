@@ -109,8 +109,7 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Hotel Audit Checklist Item",
-   "reqd": 1
+   "options": "Hotel Audit Checklist Item"
   },
   {
    "fieldname": "totals_section",

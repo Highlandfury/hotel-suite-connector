@@ -60,3 +60,9 @@ This release adds:
 - Per-item pass/fail results, observations, evidence and completion metadata
 
 Approval enforcement remains disabled until explicitly configured and tested.
+
+## Checklist usability hotfix (v0.2.1)
+
+- Fixed browser validation blocking a new checklist before template items could be populated.
+- The server remains responsible for loading template items and rejecting an empty checklist.
+- No approval or transaction enforcement is enabled by this hotfix.
