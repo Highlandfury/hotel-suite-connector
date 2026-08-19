@@ -49,3 +49,14 @@ This release introduces:
 - Hotel audit and operational control roles
 
 No ERPNext, HRMS, CRM, Payments or Kamra core files are modified.
+
+## Operational audit checklists (v0.2.0)
+
+This release adds:
+
+- Reusable hotel audit checklist templates
+- Controlled audit checklist execution records
+- Night audit, stock audit, receiving audit and preventive-maintenance starter templates
+- Per-item pass/fail results, observations, evidence and completion metadata
+
+Approval enforcement remains disabled until explicitly configured and tested.
