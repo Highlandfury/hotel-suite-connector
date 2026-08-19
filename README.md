@@ -83,3 +83,11 @@ The engine is deliberately read-only. It does not call Kamra's night-audit
 routine, post charges, change reservations, delete waitlists, create ERPNext
 entries, or enable transaction enforcement. A result of **Review Required**
 means essential evidence is still manual or outside the v0.3 scope.
+
+## Night audit preflight correctness hotfix (v0.3.1)
+
+- Authorized zero-value complimentary POS orders are treated as settled.
+- Room-status reconciliation now includes every reservation whose status is
+  Checked In, including unresolved due departures.
+- Earlier preflight evidence remains immutable; v0.3.1 produces a new source
+  fingerprint and attempt for comparison.

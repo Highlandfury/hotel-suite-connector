@@ -12,7 +12,7 @@ from frappe import _
 from frappe.utils import flt, getdate, now_datetime, today
 
 
-ENGINE_VERSION = "0.3.0"
+ENGINE_VERSION = "0.3.1"
 EXPECTED_KAMRA_VERSION = "2.5.0"
 MAX_EVIDENCE_ROWS = 50
 
@@ -514,7 +514,14 @@ def _pos_checks(data):
 	open_orders = [row for row in orders if row.get("status") in {"Placed", "Confirmed", "Preparing"}]
 	unsettled = [
 		row for row in orders
-		if row.get("status") == "Delivered" and not row.get("paid") and not row.get("posted_to_folio")
+		if row.get("status") == "Delivered"
+		and not row.get("paid")
+		and not row.get("posted_to_folio")
+		and not (
+			row.get("nc")
+			and abs(flt(row.get("order_total"))) <= 0.000001
+			and str(row.get("nc_authorized_by") or "").strip()
+		)
 	]
 	folio_posting_issues = [
 		row for row in orders
@@ -555,9 +562,9 @@ def _pos_checks(data):
 	]
 
 
-def _room_status_check(data, in_house):
+def _room_status_check(data, checked_in):
 	room_map = {row["name"]: row for row in data["rooms"]}
-	assigned = {row.get("room"): row for row in in_house if row.get("room")}
+	assigned = {row.get("room"): row for row in checked_in if row.get("room")}
 	issues = []
 	for room_name, reservation in assigned.items():
 		room = room_map.get(room_name)
@@ -672,7 +679,8 @@ def _evaluate(data, settings, business_date, compatibility):
 	checks.extend(reservation_checks)
 	checks.extend(_folio_checks(data, in_house, due_departures, flt(settings["allowed_unreconciled_variance"])))
 	checks.extend(_pos_checks(data))
-	checks.append(_room_status_check(data, in_house))
+	checked_in = [row for row in data["reservations"] if row.get("status") == "Checked In"]
+	checks.append(_room_status_check(data, checked_in))
 	checks.append(_room_charge_preview(data, in_house, business_date))
 	checks.append(_tender_summary(data, business_date))
 	checks.append(_stale_waitlist_check(data, business_date))
