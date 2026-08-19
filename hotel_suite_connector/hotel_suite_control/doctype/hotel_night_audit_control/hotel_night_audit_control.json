@@ -1,0 +1,282 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "HNAC-.YYYY.-.#####",
+ "creation": "2026-08-19 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "identity_section",
+  "property",
+  "business_date",
+  "attempt_number",
+  "column_break_1",
+  "status",
+  "scope",
+  "execution_permitted",
+  "run_section",
+  "started_on",
+  "completed_on",
+  "executed_by",
+  "column_break_2",
+  "engine_version",
+  "kamra_version",
+  "source_hash",
+  "results_section",
+  "total_checks",
+  "passed_checks",
+  "failed_checks",
+  "column_break_3",
+  "warning_checks",
+  "skipped_checks",
+  "error_checks",
+  "hard_blockers",
+  "checks_section",
+  "checks",
+  "evidence_section",
+  "summary_json",
+  "engine_message"
+ ],
+ "fields": [
+  {
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Night Audit Preflight"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Property",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Business Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "attempt_number",
+   "fieldtype": "Int",
+   "label": "Attempt",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Outcome",
+   "options": "Blocked\nReview Required\nPassed\nFailed",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "PMS Read-only Preflight",
+   "fieldname": "scope",
+   "fieldtype": "Data",
+   "label": "Scope",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Always disabled in v0.3.0. This record cannot execute night audit.",
+   "fieldname": "execution_permitted",
+   "fieldtype": "Check",
+   "label": "Execution Permitted",
+   "read_only": 1
+  },
+  {
+   "fieldname": "run_section",
+   "fieldtype": "Section Break",
+   "label": "Run Control"
+  },
+  {
+   "fieldname": "started_on",
+   "fieldtype": "Datetime",
+   "label": "Started On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "completed_on",
+   "fieldtype": "Datetime",
+   "label": "Completed On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "executed_by",
+   "fieldtype": "Link",
+   "label": "Executed By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "engine_version",
+   "fieldtype": "Data",
+   "label": "Engine Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "kamra_version",
+   "fieldtype": "Data",
+   "label": "Kamra Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "source_hash",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Source Fingerprint",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "results_section",
+   "fieldtype": "Section Break",
+   "label": "Outcome Summary"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_checks",
+   "fieldtype": "Int",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "passed_checks",
+   "fieldtype": "Int",
+   "label": "Passed",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "failed_checks",
+   "fieldtype": "Int",
+   "label": "Failed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "warning_checks",
+   "fieldtype": "Int",
+   "label": "Warnings",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "skipped_checks",
+   "fieldtype": "Int",
+   "label": "Skipped",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "error_checks",
+   "fieldtype": "Int",
+   "label": "Errors",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "hard_blockers",
+   "fieldtype": "Int",
+   "label": "Hard Blockers",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checks_section",
+   "fieldtype": "Section Break",
+   "label": "Evidence-backed Checks"
+  },
+  {
+   "fieldname": "checks",
+   "fieldtype": "Table",
+   "label": "Checks",
+   "options": "Hotel Night Audit Check Result",
+   "read_only": 1
+  },
+  {
+   "fieldname": "evidence_section",
+   "fieldtype": "Section Break",
+   "label": "Evidence Snapshot"
+  },
+  {
+   "fieldname": "summary_json",
+   "fieldtype": "Code",
+   "label": "Summary JSON",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "engine_message",
+   "fieldtype": "Small Text",
+   "label": "Engine Message",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-19 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Hotel Suite Control",
+ "name": "Hotel Night Audit Control",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel General Manager"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Auditor"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Hotel Night Auditor"
+  }
+ ],
+ "search_fields": "property,business_date,status,executed_by,source_hash",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "property",
+ "track_changes": 1
+}

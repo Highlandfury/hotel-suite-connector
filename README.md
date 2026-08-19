@@ -66,3 +66,20 @@ Approval enforcement remains disabled until explicitly configured and tested.
 - Fixed browser validation blocking a new checklist before template items could be populated.
 - The server remains responsible for loading template items and rejecting an empty checklist.
 - No approval or transaction enforcement is enabled by this hotfix.
+
+## Read-only night audit preflight (v0.3.0)
+
+This release adds an immutable, evidence-backed PMS preflight record that:
+
+- checks Kamra 2.5.0 schema compatibility and duplicate audit runs;
+- identifies unresolved arrivals, departures, missing rooms and folios;
+- validates folio arithmetic, balances, tenders and corporate credit;
+- checks open/unsettled POS orders, discounts and complimentary orders;
+- compares reservation occupancy with front-office room status;
+- previews unposted room-night revenue without posting it;
+- records source-data fingerprints so unchanged retries are idempotent.
+
+The engine is deliberately read-only. It does not call Kamra's night-audit
+routine, post charges, change reservations, delete waitlists, create ERPNext
+entries, or enable transaction enforcement. A result of **Review Required**
+means essential evidence is still manual or outside the v0.3 scope.

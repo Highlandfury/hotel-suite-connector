@@ -1,0 +1,112 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-19 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 0,
+ "engine": "InnoDB",
+ "field_order": [
+  "sequence",
+  "check_code",
+  "category",
+  "title",
+  "severity",
+  "result",
+  "record_count",
+  "amount",
+  "message",
+  "evidence_json",
+  "checked_on"
+ ],
+ "fields": [
+  {
+   "fieldname": "sequence",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "No.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "check_code",
+   "fieldtype": "Data",
+   "label": "Check Code",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Data",
+   "label": "Category",
+   "read_only": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Check",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "label": "Severity",
+   "options": "Blocker\nWarning\nInformation",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Result",
+   "options": "Passed\nFailed\nWarning\nSkipped\nError",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "record_count",
+   "fieldtype": "Int",
+   "label": "Records",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Small Text",
+   "label": "Finding",
+   "read_only": 1
+  },
+  {
+   "fieldname": "evidence_json",
+   "fieldtype": "Code",
+   "label": "Evidence JSON",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checked_on",
+   "fieldtype": "Datetime",
+   "label": "Checked On",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-19 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Hotel Suite Control",
+ "name": "Hotel Night Audit Check Result",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "idx",
+ "sort_order": "ASC",
+ "states": []
+}
