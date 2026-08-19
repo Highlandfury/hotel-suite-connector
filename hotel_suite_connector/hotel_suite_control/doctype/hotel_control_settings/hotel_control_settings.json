@@ -17,7 +17,14 @@
   "timezone",
   "night_audit_section",
   "earliest_night_audit_time",
-  "allowed_unreconciled_variance"
+  "allowed_unreconciled_variance",
+  "night_audit_guard_section",
+  "night_audit_mode",
+  "night_audit_guard_column_break",
+  "kamra_scheduler_guard_active",
+  "kamra_scheduler_original_stopped",
+  "kamra_scheduler_job",
+  "night_audit_guard_last_synced_on"
  ],
  "fields": [
   {
@@ -96,6 +103,51 @@
    "fieldtype": "Currency",
    "label": "Allowed Unreconciled Variance",
    "non_negative": 1
+  },
+  {
+   "fieldname": "night_audit_guard_section",
+   "fieldtype": "Section Break",
+   "label": "Night Audit Guard"
+  },
+  {
+   "default": "Off",
+   "description": "Off preserves Kamra behavior. Shadow records checks but allows execution. Enforced stops the Kamra scheduler and blocks uncontrolled execution.",
+   "fieldname": "night_audit_mode",
+   "fieldtype": "Select",
+   "label": "Night Audit Control Mode",
+   "options": "Off\nShadow\nEnforced",
+   "reqd": 1
+  },
+  {
+   "fieldname": "night_audit_guard_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "kamra_scheduler_guard_active",
+   "fieldtype": "Check",
+   "label": "Kamra Scheduler Guard Active",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "kamra_scheduler_original_stopped",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Kamra Scheduler Original Stopped State",
+   "read_only": 1
+  },
+  {
+   "fieldname": "kamra_scheduler_job",
+   "fieldtype": "Data",
+   "label": "Managed Scheduler Job",
+   "read_only": 1
+  },
+  {
+   "fieldname": "night_audit_guard_last_synced_on",
+   "fieldtype": "Datetime",
+   "label": "Guard Last Synchronized On",
+   "read_only": 1
   }
  ],
  "links": [],
@@ -126,7 +178,8 @@
    "read": 1,
    "report": 1,
    "role": "Hotel General Manager",
-   "write": 1
+   "write": 0,
+   "delete": 0
   },
   {
    "create": 0,
@@ -137,7 +190,8 @@
    "read": 1,
    "report": 1,
    "role": "Hotel Auditor",
-   "write": 1
+   "write": 0,
+   "delete": 0
   }
  ],
  "sort_field": "modified",

@@ -91,3 +91,20 @@ means essential evidence is still manual or outside the v0.3 scope.
   Checked In, including unresolved due departures.
 - Earlier preflight evidence remains immutable; v0.3.1 produces a new source
   fingerprint and attempt for comparison.
+
+## Fail-closed night audit guard (v0.4.0)
+
+- Adds Off, Shadow and Enforced control modes; installation defaults to Off.
+- Overrides Kamra's public night-audit API through Frappe hooks without
+  modifying Kamra source.
+- In Shadow mode, records a preflight and guard event before allowing Kamra.
+- In Enforced mode, records the blocked attempt and never calls Kamra while
+  controlled execution remains incomplete.
+- Stops Kamra's direct scheduler only in Enforced mode and remembers its prior
+  stopped state so disabling enforcement restores the previous configuration.
+- Makes Hotel Control Settings read-only for hotel auditors and general
+  managers; only System Manager can change enforcement.
+
+Privileged administrators can still call Kamra's Python function directly from
+the server for disaster recovery. That path is intentionally not exposed in the
+Desk or public API and must be governed by the production recovery runbook.

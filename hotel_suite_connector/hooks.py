@@ -258,3 +258,9 @@ after_migrate = "hotel_suite_connector.install.after_migrate"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+# Controlled night-audit entry point
+# ----------------------------------
+
+override_whitelisted_methods = {
+	"kamra.api.run_night_audit": "hotel_suite_connector.night_audit.guard.run_night_audit",
+}

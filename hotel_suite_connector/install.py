@@ -19,11 +19,13 @@ def before_install():
 def after_install():
 	ensure_roles()
 	ensure_default_checklist_templates()
+	sync_night_audit_scheduler_guard()
 
 
 def after_migrate():
 	ensure_roles()
 	ensure_default_checklist_templates()
+	sync_night_audit_scheduler_guard()
 
 
 def ensure_roles():
@@ -122,3 +124,9 @@ def ensure_default_checklist_templates():
 				},
 			)
 		doc.insert(ignore_permissions=True)
+
+def sync_night_audit_scheduler_guard():
+	"""Apply the selected scheduler state after DocTypes and jobs are synchronized."""
+	from hotel_suite_connector.night_audit.scheduler_guard import sync_scheduler_guard
+
+	sync_scheduler_guard()
